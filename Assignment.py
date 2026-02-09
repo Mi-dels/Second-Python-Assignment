@@ -28,17 +28,23 @@ def listTasks():
      
 
 def editTask():
-   try:
-      for index, task in enumerate(Task, 1):
-         print(f"Task #{index}. {task}")
-         index += 1
-         edit = int(input("Enter the input to be edited:")) - 1
-         Task[edit] = input("write the changes:")
-      for index, task in enumerate(Task, 1):
-         print(f"Task #{index}. {task["Task"]} - {task["Status"]}")
-         index += 1
-   except ValueError:
-      print("Please Enter A Valid Task Number")
+         if not Task:
+            print("There is no task currently.")
+         else:
+           for index, task in enumerate(Task, 1):
+            print(f"Task #{index}. {task}")
+            try:
+               edit = int(input("Enter the input to be edited:")) - 1
+               if edit < 0 or edit >= len(Task):
+                  print("Invalid task number \n")
+               else:
+                  newTask = input("write the changes:")
+                  Task[edit]["Task"] = newTask
+                  print("Task updated successfully")
+            except ValueError:
+               print("Please enter a valid number")
+            
+      
 
 
    
