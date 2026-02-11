@@ -32,17 +32,23 @@ class taskFunctions:
         if not self.task:
             return self.addTask()
         else:
-                idx = int(input("Enter task number to update: "))
+                idx = int(input("Enter task number to edit: "))
                 task = self.task[idx]
                 choice = input("Choice: ")
             
         if choice == '1': task.Tasks = input("New Task: ")
         elif choice == '2': task.Details = input("New Details: ")
         elif choice == '3': task.Status = input("New Status: ")
-        print("Updated!")
+        print("Task edited")
 
 
-    def markTask(self):
+    def deleteTask(self):
+     try:
+        idx = int(input("Enter task number to delete: "))
+        delete = self.task.pop(idx)
+        print(f"Deleted: {delete.name}")
+    except ValueError:
+        print("Invalid task number.")
 
 
     
