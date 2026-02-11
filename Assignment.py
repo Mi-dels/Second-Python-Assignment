@@ -41,7 +41,7 @@ def editTask():
                   newTask = input("write the changes:")
                   Task[edit]["Task"] = newTask
                   print("Task updated successfully")
-            except ValueError:
+            except ValueError:               
                print("Please enter a valid number")
             
       
