@@ -65,8 +65,8 @@ class taskFunctions:
             return self.addTask()
         else:
             try:
-                idx = int(input("Enter the number of the task to be marked, format: 1, 2, 3:")) -1
-                marktask = self.task[idx]
+                mark = int(input("Enter the number of the task to be marked, format: 1, 2, 3:")) -1
+                marktask = self.task[mark]
                 choice = input("Enter No.1 to update status: ")
                 if choice == '1': 
                     marktask.Status = input("New Status: ")
