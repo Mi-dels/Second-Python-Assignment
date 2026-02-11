@@ -5,7 +5,7 @@ class Task:
         self.Status = Status
 
     def __str__(self):
-        return f"{self.Tasks} | {self.Details} | Status: {self.Status}"
+        return f"Task : {self.Tasks} | Details : {self.Details} | Status: {self.Status}"
 
        
 class taskFunctions: 
@@ -18,37 +18,72 @@ class taskFunctions:
         Status = input("Enter the status of the new task e.g initialized, pending, done:")
         newTask = Task(Tasks,Details,Status)
         self.task.append(newTask)
-        print("Task has been created")
+        print("Task has been created \n")
 
     def listTask(self):
         if not self.task:
-            print("There is no task currently.")
+            print("There is no task currently. \n")
         else:
-            for index, task in enumerate(self.task, 1):
-                print(f" {index} . {task}") 
+            for index, newTask in enumerate(self.task, 1):
+                print(f" {index} . {newTask} \n") 
 
     def editTask(self):
         self.listTask()
         if not self.task:
             return self.addTask()
         else:
-                idx = int(input("Enter task number to edit: "))
-                task = self.task[idx]
-                choice = input("Choice: ")
+            try:
+                edit = int(input("Enter Task number to edit Task, format: 1, 2, 3: ")) -1
+                task = self.task[edit]
+                choice = input("Enter input, format: 1 for Task, 2 for Details, 3 for Status, : ")
             
-        if choice == '1': task.Tasks = input("New Task: ")
-        elif choice == '2': task.Details = input("New Details: ")
-        elif choice == '3': task.Status = input("New Status: ")
-        print("Task edited")
+                if choice == '1': 
+                    task.Tasks = input("New Task: ")
+                elif choice == '2': 
+                    task.Details = input("New Details: ")
+                elif choice == '3': 
+                    task.Status = input("New Status: ")
+                print("Task has been edited \n")
+                self.listTask()
+            except (ValueError, IndexError):
+                print("invalid task number \n")
 
 
     def deleteTask(self):
-     try:
-        idx = int(input("Enter task number to delete: "))
-        delete = self.task.pop(idx)
-        print(f"Deleted: {delete.name}")
-    except ValueError:
-        print("Invalid task number.")
+        try:
+           delete = int(input("Enter task number to delete: "))-1
+           deletedTask = self.task.pop(delete)
+           print(f"Deleted: {deletedTask} \n")
+        except (ValueError, IndexError):
+            print( "invalid task number \n")
+
+
+
+    def markTask(self): 
+        self.listTask()
+        if not self.task:
+            return self.addTask()
+        else:
+            try:
+                idx = int(input("Enter the number of the task to be marked, format: 1, 2, 3:")) -1
+                marktask = self.task[idx]
+                choice = input("Enter No.1 to update status: ")
+                if choice == '1': 
+                    marktask.Status = input("New Status: ")
+                print(f"{marktask} has been marked \n")
+                self.listTask()
+            except(ValueError, IndexError):
+                print("ivalid task number \n")
+             
+                
+
+
+
+
+
+   
+   
+   
 
 
     
